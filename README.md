@@ -11,7 +11,7 @@
 ### Analyze and Code
 - Using the divide and conquer method, break this problem down into the simplest possible subproblems. I will break it to:
     #### Split messenges
-    
+    ![split_messenge](https://github.com/user-attachments/assets/62c7fb78-2875-422f-aabf-66ee65d7c6f5)
      - Each messenges will fall into 1 in 2 case:
         - Messenges can devide into 2 part:
             - One is "available".
@@ -20,16 +20,16 @@
         - Messenge is single sentence:
             - This sentence can only be "available" or an Exception (assuming exception can be either "except" or "prefer").
         #### Example:
-            [IMG_0012]
+       ![analyze](https://github.com/user-attachments/assets/72725458-b6f3-47bb-94fa-3d809163ff05)
         #### Method:
-        - Build a subset of word for split messenges. For split word:
+        - Build a subset of word for split messenges. For split word.
         - Build a subset of word negative and prefer for classify the split sentence is "exception" or "available" or "prefer":
     #### Day extraction
-    
+    ![day_extraction](https://github.com/user-attachments/assets/94071fed-e202-43a7-b4a6-185826561c4f)
     - Extract the workday in `available_sentence`, `exception_sentence`, `prefer_sentence` by loop these messenge in a list of `['monday', 'tuesday', 'wednesday', 'thursday', 'friday']` to extract.
 
     #### Time extraction 
-    
+    ![time_extraction](https://github.com/user-attachments/assets/a13e1f32-71b1-4bca-9cea-728301d83a77)
     - Extract time in `available_sentence`, `exception_sentence`, `prefer_sentence`.
         #### Condition for time
         - the meeting is atleast 1 hours.
@@ -86,7 +86,7 @@
         r'(morning|afternoon)'                        # Morning or afternoon
         ```
     #### Create a schedule
-    
+    ![create_schedule](https://github.com/user-attachments/assets/5891b40e-db1e-4a62-b2a4-a578316a4769)
     - After we can find `available day`, `available time`, we can create a schedule base on overlapping of each user messenge.
     
     
@@ -106,10 +106,10 @@
         Available_part: None
         Exception_part: i already have a meeting booked on friday from 2 to 4 pm.
         Preference_part: None
-        Available days: ['monday', 'tuesday', 'wednesday', 'thursday', 'friday']
+        Available days: ['monday', 'tuesday', 'wednesday', 'thursday']
         Unavailable days: ['friday']
 
-    - Time extraction:
+    - Time extraction: The reason why available days now have `friday` because after extract block time in exception messenges, the user just busy a period of time, not whole day. So user still have free time when he not busy.
         ```
         Message: I already have a meeting booked on Friday from 2 to 4 PM.
         Available_part: None
@@ -123,12 +123,14 @@
 ### Usage
 #### Interactive app
 - Go to `/src/` and run the `main.py` file for interactive app.
-    - Input num of user
+    - Input num of user (>0)
     - For each user, input the messenges, the detail extract for each user will appear after you hit enter.
+    - For exit app, input `-99` at input num of user.
 #### Test
 - Go to `/src` and open file `test.py`. Edit messenges you want test from `list_test` variable. Then run the `test.py` file via terminal to see the extraction and available schedule.
 
 #### Demo
+https://github.com/user-attachments/assets/e4fdd5f9-e22b-48ce-bf59-2d7460e6c3db
 
-    
+
 
